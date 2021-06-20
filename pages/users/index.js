@@ -1,14 +1,18 @@
-import { admin } from "../middlewares/initAdmin";
+import { admin } from "../../middlewares/initAdmin";
+import Nav from "../../components/Nav/Nav";
 
 export default function Users({ users }) {
   return (
-    <div>
-      {users.map(user => (
-        <li key={user.uid}>
-          {user.name} || {user.email}
-        </li>
-      ))}
-    </div>
+    <>
+      <Nav />
+      <div>
+        {users.map(user => (
+          <li key={user.uid}>
+            {user.name} || {user.email}
+          </li>
+        ))}
+      </div>
+    </>
   );
 }
 
