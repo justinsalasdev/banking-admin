@@ -4,12 +4,16 @@ import genClass from "../../helpers/genClass";
 import useForm from "./useForm";
 import useCurrency from "../Line/useCurrency";
 import useAccount from "../Line/useAccount";
+import useCreate from "./useCreate";
+
 export default function Creator() {
   const [formData, formErrors] = useForm();
+  const { isLoading, error, handleSubmit } = useCreate(formData, formErrors);
+
   const $ = genClass({ block: "creator" });
 
   return (
-    <form {...$()}>
+    <form {...$()} onSubmit={handleSubmit}>
       <Line
         id="email"
         type="text"
@@ -18,14 +22,14 @@ export default function Creator() {
         validator={useEmail(formErrors)}
         ps={$("line").className}
       />
-      <Line
+      {/* <Line
         id="account"
         type="text"
         placeholder="Account number"
         formData={formData}
         validator={useAccount(formErrors)}
         ps={$("line").className}
-      />
+      /> */}
       <Line
         id="balance"
         type="text"
@@ -34,9 +38,7 @@ export default function Creator() {
         validator={useCurrency(formErrors)}
         ps={$("line").className}
       />
-      <button type="button" onClick={() => console.log(formErrors)}>
-        SHOW
-      </button>
+      <button type="submit">SUBMIT</button>
     </form>
   );
 }

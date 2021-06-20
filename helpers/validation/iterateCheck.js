@@ -5,7 +5,6 @@ export default function iterateCheck(value, validators) {
     if (error && error !== "initial") {
       break;
     } else if (error === "initial") {
-      error = "";
       break;
     } else {
       continue;

@@ -1,4 +1,4 @@
-import { admin } from "../../middlewares/initAdmin";
+import { admin } from "../../firebase/initAdmin";
 import Nav from "../../components/Nav/Nav";
 import Link from "next/link";
 
