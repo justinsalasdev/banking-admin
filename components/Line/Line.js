@@ -43,7 +43,9 @@ export default function Line({
         />
       </div>
 
-      <span {...$("toolkit")}>{fieldError}</span>
+      <span {...$("toolkit")}>
+        {fieldError === "initial" ? "" : fieldError}
+      </span>
     </div>
   );
 }

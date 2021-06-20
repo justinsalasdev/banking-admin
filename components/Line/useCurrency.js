@@ -1,5 +1,5 @@
-import getValidators from "../../helpers/getValidators";
-import iterateCheck from "../../helpers/iterateCheck";
+import getValidators from "../../helpers/validation/getValidators";
+import iterateCheck from "../../helpers/validation/iterateCheck";
 
 export default function useCurrency(formErrors) {
   const currencyRegex = /^[0-9]+(\.[0-9]{1,2})?$/; //used by HTML W3c

@@ -1,9 +1,9 @@
-import getValidators from "../../helpers/getValidators";
-import iterateCheck from "../../helpers/iterateCheck";
+import getValidators from "../../helpers/validation/getValidators";
+import iterateCheck from "../../helpers/validation/iterateCheck";
 
 export default function useEmail(formErrors) {
   const emailRegex =
-    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //used by W3C html
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const validators = getValidators("email", [
     ["isRequired"],
     ["isInitial"],
