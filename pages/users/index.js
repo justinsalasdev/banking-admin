@@ -1,14 +1,23 @@
-import { admin } from "../middlewares/initAdmin";
+import { admin } from "../../middlewares/initAdmin";
+import Nav from "../../components/Nav/Nav";
+import Link from "next/link";
 
 export default function Users({ users }) {
   return (
-    <div>
-      {users.map(user => (
-        <li key={user.uid}>
-          {user.name} || {user.email}
-        </li>
-      ))}
-    </div>
+    <>
+      <Nav />
+      <main>
+        <div>
+          {users.map(user => (
+            <li key={user.uid}>
+              {user.name} || {user.email}
+            </li>
+          ))}
+        </div>
+
+        <Link href="/users/new">create new account</Link>
+      </main>
+    </>
   );
 }
 
