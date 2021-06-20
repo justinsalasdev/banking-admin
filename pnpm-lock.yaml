@@ -6,14 +6,18 @@ specifiers:
   firebase-admin: ^9.9.0
   next: 11.0.0
   react: 17.0.2
+  react-currency-format: ^1.0.0
   react-dom: 17.0.2
+  react-icons: ^4.2.0
   sass: ^1.35.1
 
 dependencies:
   firebase-admin: 9.9.0
   next: 11.0.0_019c9de95e3962263945f7fb2f6785fd
   react: 17.0.2
+  react-currency-format: 1.0.0_react-dom@17.0.2+react@17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-icons: 4.2.0_react@17.0.2
   sass: 1.35.1
 
 devDependencies:
@@ -3143,6 +3147,17 @@ packages:
       unpipe: 1.0.0
     dev: false
 
+  /react-currency-format/1.0.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-m+nJhMNXv46Ec2jFQitfTUqoGbM=}
+    peerDependencies:
+      react: ^0.14 || ^15.0.0-rc || ^15.0.0 || ^16.0.0-rc || ^16.0.0
+      react-dom: ^0.14 || ^15.0.0-rc || ^15.0.0 || ^16.0.0-rc || ^16.0.0
+    dependencies:
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
@@ -3152,6 +3167,14 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
+    dev: false
+
+  /react-icons/4.2.0_react@17.0.2:
+    resolution: {integrity: sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /react-is/16.13.1:
