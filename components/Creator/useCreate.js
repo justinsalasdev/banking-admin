@@ -1,29 +1,43 @@
 import { useReducer } from "react";
 import isClean from "../../helpers/validation/isClean";
+import { useRouter } from "next/router";
 
 export default function useCreate(formData, formErrors) {
+  const router = useRouter();
   const [state, dispatch] = useReducer(reducer, {
     isLoading: false,
-    userData: null,
     error: null
   });
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (isClean(formErrors)) {
-      // result.user => 'Ada Lovelace'
-      const res = await fetch("/api/user/create", {
-        body: JSON.stringify({
-          ...formData
-        }),
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: "POST"
-      });
+      dispatch({ type: "start" });
+      try {
+        const res = await fetch("/api/user/create", {
+          body: JSON.stringify({
+            ...formData,
+            balance: Number(formData.balance)
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          },
+          method: "POST"
+        });
+        const result = await res.json();
 
-      const result = await res.json();
-      console.log(result);
+        if (res.status === 200) {
+          router.push("/users");
+        }
+
+        if (res.status === 500) {
+          dispatch({ type: "error", payload: result.error });
+        }
+
+        console.log(result);
+      } catch (err) {
+        dispatch({ type: "error", payload: "Unknown error occured" });
+      }
     } else {
       return;
     }
@@ -35,7 +49,7 @@ export default function useCreate(formData, formErrors) {
 function reducer(state, action) {
   switch (action.type) {
     case "start": {
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     }
 
     case "error": {
@@ -43,7 +57,7 @@ function reducer(state, action) {
     }
 
     case "done": {
-      return { ...state, userData: action.payload, isLoading: false };
+      return { ...state, isLoading: false };
     }
   }
 }

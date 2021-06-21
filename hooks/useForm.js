@@ -1,5 +1,5 @@
 import { useRef } from "react";
-export default function useFormContext() {
+export default function useForm() {
   const {
     current: { formData, formErrors }
   } = useRef({ formData: {}, formErrors: {} });

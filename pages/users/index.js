@@ -1,21 +1,13 @@
 import { admin } from "../../firebase/initAdmin";
 import Nav from "../../components/Nav/Nav";
-import Link from "next/link";
+import UserTable from "../../components/Users/Users";
 
 export default function Users({ users }) {
   return (
     <>
       <Nav />
-      <main>
-        <div>
-          {users.map(user => (
-            <li key={user.uid}>
-              {user.name} || {user.email}
-            </li>
-          ))}
-        </div>
-
-        <Link href="/users/new">create new account</Link>
+      <main className="main">
+        <UserTable users={users} />
       </main>
     </>
   );

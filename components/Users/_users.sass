@@ -1,0 +1,32 @@
+
+.users
+  // background: green
+  display: grid
+  grid-template: auto 1fr /1fr
+
+  &__bar
+    text-align: right
+    background: $navy
+    color: $light
+    display: flex
+    align-items: center
+    padding: .5rem
+
+    & a
+      display: flex
+    // background: blue
+
+  &__user
+    display: grid
+    grid-template: 1fr/1fr 1fr auto
+    border-bottom: 1px solid $cyan
+    cursor: pointer
+
+    &:hover
+      background: lighten($cyan,65% )
+
+    &>div
+      padding: .4rem
+
+    &>.link
+      padding-left: 1rem
