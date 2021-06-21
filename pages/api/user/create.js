@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   try {
     const { email, name, balance } = req.body;
     const userId = await createUser(email, name);
-    await setUpAccount(balance, userId);
+    await setUpAccount(name, balance, userId);
     res.status(200).json({ userId });
   } catch (err) {
     res.status(500).json({ error: err });

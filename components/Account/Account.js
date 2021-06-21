@@ -12,7 +12,7 @@ const formRenderer = {
   initial: () => ""
 };
 
-export default function Account() {
+export default function Account({ details }) {
   const [action, setAction] = useState({
     type: "initial",
     started: false
@@ -28,39 +28,41 @@ export default function Account() {
   return (
     <div {...$()}>
       <div {...$("bar")}>
-        <p {...$("name")}>NAME</p>
-        <p {...$("account")}>ACCOUNT #</p>
+        <p {...$("name")}>{details.name}</p>
+        <p {...$("account")}>{details.account}</p>
       </div>
       <div {...$("info")}>
-        <p {...$("balance")}>₿{toCurrency(1239018)}</p>
+        <p {...$("balance")}>₿{toCurrency(details.balance)}</p>
       </div>
       <div {...$("actions")}>
         <button
-          {...$("action")}
+          {...$("deposit")}
           onClick={() => setAction({ type: "deposit", started: true })}
         >
           DEPOSIT
         </button>
         <button
-          {...$("action")}
+          {...$("withdraw")}
           onClick={() => setAction({ type: "withdraw", started: true })}
         >
           WITHDRAW
         </button>
         <button
-          {...$("action")}
+          {...$("transfer")}
           onClick={() => setAction({ type: "transfer", started: true })}
         >
           TRANSFER
         </button>
       </div>
 
-      {(action.started &&
+      {action.started &&
         formRenderer[action.type]({
+          userId: details.userId,
+          account: details.account,
+          oldBalance: details.balance,
           text: "hahaha",
           cancel: handleCancel(action.type)
-        })) ||
-        "NO ACTION"}
+        })}
     </div>
   );
 }
