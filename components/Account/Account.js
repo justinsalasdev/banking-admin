@@ -1,9 +1,6 @@
 import { useState } from "react";
 import genClass from "../../helpers/genClass";
 import toCurrency from "../../helpers/toCurrency";
-// import Creditor from "../Transactor/Transactor";
-// import useDeposit2 from "../Transactor/useDeposit";
-// import Debtor from "../Debtor/Debtor";
 import Sender from "../Sender/Sender";
 import Transactor from "../Transactor/Transactor";
 import useDeposit from "../Transactor/useDeposit";
@@ -18,7 +15,8 @@ const formRenderer = {
 
 const transactors = {
   deposit: useDeposit,
-  withdraw: useWithdraw
+  withdraw: useWithdraw,
+  transfer: () => "hahaha"
 };
 
 export default function Account({ details }) {
