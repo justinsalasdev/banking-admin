@@ -1,6 +1,6 @@
 import { db } from "../../firebase/initAdmin";
 
-export default async function deposit(account, newBalance) {
+export default async function transact(account, newBalance) {
   return new Promise(async (resolve, reject) => {
     try {
       const accountRef = db.collection("Accounts").doc(account);

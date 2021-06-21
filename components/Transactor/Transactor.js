@@ -3,24 +3,17 @@ import useCurrency from "../../hooks/useCurrency";
 import useForm from "../../hooks/useForm";
 import Icon from "../Icon/Icon";
 import Line from "../Line/Line";
-import useDeposit from "./useDeposit";
 
-export default function Creditor({ ps, cancel, account, oldBalance, userId }) {
+export default function Transactor({ ps, cancel, transactor, placeholder }) {
   const $ = genClass({ block: "creditor", ps });
   const [formData, formErrors] = useForm();
-  const { isLoading, error, handleSubmit } = useDeposit(
-    formData,
-    formErrors,
-    oldBalance,
-    account,
-    userId
-  );
+  const { isLoading, error, handleSubmit } = transactor(formData, formErrors);
   return (
     <form {...$()} onSubmit={handleSubmit}>
       <Line
         id="balance"
         type="text"
-        placeholder="Amount"
+        placeholder={placeholder}
         formData={formData}
         validator={useCurrency(formErrors)}
         ps={$("line").className}

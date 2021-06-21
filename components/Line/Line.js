@@ -1,6 +1,6 @@
 import genClass from "../../helpers/genClass";
 import Icon from "../Icon/Icon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //id =
 //type =
@@ -23,6 +23,10 @@ export default function Line({
   function handleChange(e) {
     setFieldValue(e.target.value);
   }
+
+  useEffect(() => {
+    setFieldValue("_initial");
+  }, [placeholder]);
 
   return (
     <div {...$()}>
