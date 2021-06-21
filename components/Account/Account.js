@@ -60,6 +60,7 @@ export default function Account({ details }) {
           userId: details.userId,
           account: details.account,
           oldBalance: details.balance,
+          ps: $("form").className,
           text: "hahaha",
           cancel: handleCancel(action.type)
         })}

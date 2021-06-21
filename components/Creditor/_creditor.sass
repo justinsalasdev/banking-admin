@@ -1,16 +1,30 @@
 .creditor
   display: grid
-  grid-template: 1fr/1fr auto
-  margin: 1rem
-  padding: .5rem
+  grid-template: 1fr /1fr auto
+  // margin: 1rem
+  padding: .5rem .5rem 0.2rem .5rem
   // border: 1px solid $cyan
+  position: relative
 
   &__actions
     display: flex
-
     margin-left: .5rem
 
   &__action
     background: none
     padding: .5rem
     font-size: 1rem
+
+  &__toolkit
+    position: absolute
+    bottom: 0
+    right: 0
+    transform: translateY(100%)
+    text-align: center
+    border-radius: .2rem
+    justify-self: start
+    display: inline-block
+    padding: .1rem .5rem
+    font-size: .8em
+    background: $red
+    color: $light

@@ -5,8 +5,8 @@ import Icon from "../Icon/Icon";
 import Line from "../Line/Line";
 import useDeposit from "./useDeposit";
 
-export default function Creditor({ cancel, account, oldBalance, userId }) {
-  const $ = genClass({ block: "creditor" });
+export default function Creditor({ ps, cancel, account, oldBalance, userId }) {
+  const $ = genClass({ block: "creditor", ps });
   const [formData, formErrors] = useForm();
   const { isLoading, error, handleSubmit } = useDeposit(
     formData,
@@ -17,7 +17,6 @@ export default function Creditor({ cancel, account, oldBalance, userId }) {
   );
   return (
     <form {...$()} onSubmit={handleSubmit}>
-      <span>{error}</span>
       <Line
         id="balance"
         type="text"
@@ -34,6 +33,7 @@ export default function Creditor({ cancel, account, oldBalance, userId }) {
           <Icon type="cancel" />
         </button>
       </div>
+      {error && <p {...$("toolkit")}>{error}</p>}
     </form>
   );
 }

@@ -1,3 +1,3 @@
-export default function Debtor({ text }) {
-  return <div>{text}</div>;
+export default function Debtor() {
+  return <div>hahah</div>;
 }

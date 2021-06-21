@@ -17,10 +17,16 @@ export default function useDeposit(
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const { balance } = formData;
+
+    if (Number(balance) <= 0) {
+      dispatch({ type: "error", payload: "can't deposit 0" });
+      return;
+    }
+
     if (isClean(formErrors)) {
       dispatch({ type: "start" });
       try {
-        const { balance } = formData;
         const res = await fetch("/api/account/deposit", {
           body: JSON.stringify({
             newBalance: Number(balance) + oldBalance,
