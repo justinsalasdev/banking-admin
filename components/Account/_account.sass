@@ -1,12 +1,15 @@
 .account
+  background: lighten($light,5% )
   width: 95%
   max-width: 35rem
   display: grid
   grid-template: auto 1fr auto auto/1fr
+  // border: 1px solid $navy
+  box-shadow: .2rem .2rem .8rem rgba($dark,0.2)
 
   &__bar
-    // background: $cyan
-    color: $cyan
+    background: $cyan
+    color: $light
     display: flex
     justify-content: space-between
     border-bottom: 1px solid $cyan
@@ -16,11 +19,14 @@
       font-weight: 700
 
   &__balance
-    margin-block: 1rem
+    margin: .7rem
     padding: .2rem
     font-size: 2rem
     font-weight: 700
     color: $navy
+
+  &__form
+    margin: .7rem
 
   &__actions
     display: flex
@@ -34,10 +40,10 @@
 
   &__withdraw
     color: $dark
-    background: orange
+    background: $orange
   &__deposit
     color: $light
-    background: green
+    background: $green
   &__transfer
     color: $light
     background: $navy

@@ -17,6 +17,7 @@ export default function Transactor({ ps, cancel, transactor, placeholder }) {
         formData={formData}
         validator={useCurrency(formErrors)}
         ps={$("line").className}
+        mods={{ div: ["transactor"] }}
       />
       <div {...$("actions")}>
         <button type="submit" {...$("action")}>

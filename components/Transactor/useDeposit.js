@@ -12,7 +12,6 @@ export default function useDeposit(account, userId, oldBalance) {
       error: null,
       isLoading: false
     });
-
     async function handleSubmit(e) {
       e.preventDefault();
       const { balance } = formData;

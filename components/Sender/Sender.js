@@ -21,7 +21,8 @@ export default function Sender({ ps, cancel, transactor, placeholder }) {
         placeholder={"Destination account"}
         formData={formData}
         validator={useAccount(formErrors)}
-        ps={$("line--account").className}
+        ps={$("line").className}
+        mods={{ div: ["transactor"] }}
       />
       <Line
         id="balance"
@@ -29,7 +30,8 @@ export default function Sender({ ps, cancel, transactor, placeholder }) {
         placeholder={placeholder}
         formData={formData}
         validator={useCurrency(formErrors)}
-        ps={$("line--balance").className}
+        ps={$("line").className}
+        mods={{ div: ["transactor"] }}
       />
       <div {...$("actions")}>
         <button type="submit" {...$("action")}>
