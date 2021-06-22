@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useReducer } from "react";
 import transactionReducer from "../../reducers/transactionReducer";
 
-export default function useDeposit(account, userId, oldBalance) {
+export default function useTransfer(account, userId, oldBalance) {
   return function transactor(formData, formErrors) {
     const router = useRouter();
     const [state, dispatch] = useReducer(transactionReducer, {
@@ -15,21 +15,32 @@ export default function useDeposit(account, userId, oldBalance) {
 
     async function handleSubmit(e) {
       e.preventDefault();
-      const { balance } = formData;
+      const { balance, account: destination } = formData;
       const amount = Number(balance);
 
+      if (destination === account) {
+        dispatch({ type: "error", payload: "can't transfer to own account" });
+        return;
+      }
+
+      if (amount > oldBalance) {
+        dispatch({ type: "error", payload: "not enough balance" });
+        return;
+      }
+
       if (amount < 100) {
-        dispatch({ type: "error", payload: "minimum deposit of B100" });
+        dispatch({ type: "error", payload: "minimum transfer is B100" });
         return;
       }
 
       if (isClean(formErrors)) {
         dispatch({ type: "start" });
         try {
-          const res = await fetch("/api/account/transact", {
+          const res = await fetch("/api/account/transfer", {
             body: JSON.stringify({
-              newBalance: amount + oldBalance,
-              account
+              account,
+              destination,
+              amount
             }),
             headers: {
               "Content-Type": "application/json"
@@ -39,6 +50,7 @@ export default function useDeposit(account, userId, oldBalance) {
           const result = await res.json();
 
           if (res.status === 200) {
+            //unique query params to retrigger getServersideProps
             router.replace(`/users/${userId}?${new Date().valueOf()}`);
             dispatch({ type: "done" });
           }

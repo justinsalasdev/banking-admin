@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import isClean from "../../helpers/validation/isClean";
 import { useRouter } from "next/router";
+import reducer from "./reducer";
 
 export default function useCreate(formData, formErrors) {
   const router = useRouter();
@@ -44,20 +45,4 @@ export default function useCreate(formData, formErrors) {
   }
 
   return { isLoading: state.isLoading, error: state.error, handleSubmit };
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "start": {
-      return { ...state, isLoading: true, error: null };
-    }
-
-    case "error": {
-      return { ...state, error: action.payload, isLoading: false };
-    }
-
-    case "done": {
-      return { ...state, isLoading: false };
-    }
-  }
 }

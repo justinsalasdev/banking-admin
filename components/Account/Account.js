@@ -1,22 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import genClass from "../../helpers/genClass";
 import toCurrency from "../../helpers/toCurrency";
 import Sender from "../Sender/Sender";
+import useTransfer from "../Sender/useTransfer";
 import Transactor from "../Transactor/Transactor";
 import useDeposit from "../Transactor/useDeposit";
 import useWithdraw from "../Transactor/useWithdraw";
 
-const formRenderer = {
-  deposit: props => <Transactor {...props} />,
-  withdraw: props => <Transactor {...props} />,
-  transfer: props => <Sender {...props} />,
-  initial: () => ""
+const forms = {
+  deposit: Transactor,
+  withdraw: Transactor,
+  transfer: Sender
 };
 
 const transactors = {
   deposit: useDeposit,
   withdraw: useWithdraw,
-  transfer: () => "hahaha"
+  transfer: useTransfer
 };
 
 export default function Account({ details }) {
@@ -64,8 +64,8 @@ export default function Account({ details }) {
       </div>
 
       {action.started &&
-        formRenderer[action.type]({
-          transactor: transactors[action.type](balance, account, userId),
+        React.createElement(forms[action.type], {
+          transactor: transactors[action.type](account, userId, balance),
           placeholder: `Amount to ${action.type}`,
           ps: $("form").className,
           cancel: handleCancel(action.type)

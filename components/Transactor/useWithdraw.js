@@ -1,12 +1,13 @@
 import isClean from "../../helpers/validation/isClean";
 import { useRouter } from "next/router";
-import reducer from "./reducer";
 import { useReducer } from "react";
+import transactionReducer from "../../reducers/transactionReducer";
 
-export default function (oldBalance, account, userId) {
-  return function useWithdraw(formData, formErrors) {
+export default function useWithdraw(account, userId, oldBalance) {
+  return function transactor(formData, formErrors) {
     const router = useRouter();
-    const [state, dispatch] = useReducer(reducer, {
+    const [state, dispatch] = useReducer(transactionReducer, {
+      oldBalance,
       error: null,
       isLoading: false
     });
@@ -21,8 +22,8 @@ export default function (oldBalance, account, userId) {
         return;
       }
 
-      if (amount <= 0) {
-        dispatch({ type: "error", payload: "can't withdraw 0" });
+      if (amount < 100) {
+        dispatch({ type: "error", payload: "minimum withdrawal of B100" });
         return;
       }
 
@@ -42,7 +43,7 @@ export default function (oldBalance, account, userId) {
           const result = await res.json();
 
           if (res.status === 200) {
-            router.replace(`/users/${userId}`);
+            router.replace(`/users/${userId}?${new Date().valueOf()}`);
             dispatch({ type: "done" });
           }
 

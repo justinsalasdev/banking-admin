@@ -5,7 +5,7 @@ import Icon from "../Icon/Icon";
 import Line from "../Line/Line";
 
 export default function Transactor({ ps, cancel, transactor, placeholder }) {
-  const $ = genClass({ block: "creditor", ps });
+  const $ = genClass({ block: "transactor", ps });
   const [formData, formErrors] = useForm();
   const { isLoading, error, handleSubmit } = transactor(formData, formErrors);
   return (
