@@ -29,7 +29,7 @@ export async function getStaticProps(context) {
     matched.push({ account: doc.id, ...doc.data() })
   );
 
-  return { props: { userId, ...matched[0] }, revalidate: 1 };
+  return { props: { userId, ...matched[0] } };
 }
 
 export async function getStaticPaths() {
