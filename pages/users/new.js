@@ -5,7 +5,7 @@ export default function New() {
   return (
     <>
       <Nav />
-      <main>
+      <main className="main">
         <Creator />
       </main>
     </>

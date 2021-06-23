@@ -1,6 +1,6 @@
 import { db } from "../../firebase/initAdmin";
 
-export default async function setUpAccount(balance, userId) {
+export default async function setUpAccount(name, balance, userId) {
   return new Promise(async (resolve, reject) => {
     try {
       const numRef = db.collection("UserNum").doc("userCount");
@@ -14,9 +14,7 @@ export default async function setUpAccount(balance, userId) {
           const accountRef = db.collection("Accounts").doc(accountNumber);
           transactor
             .set(accountRef, {
-              name: "John Doe",
-              address: "First Street",
-              birthday: "Oct 20,1994",
+              name,
               owner: userId,
               balance
             })

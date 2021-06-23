@@ -1,10 +1,10 @@
 import Line from "../Line/Line";
-import useEmail from "../Line/useEmail";
 import genClass from "../../helpers/genClass";
-import useForm from "./useForm";
-import useCurrency from "../Line/useCurrency";
-import useAccount from "../Line/useAccount";
 import useCreate from "./useCreate";
+import useCurrency from "../../hooks/useCurrency";
+import useName from "../../hooks/useName";
+import useEmail from "../../hooks/useEmail";
+import useForm from "../../hooks/useForm";
 
 export default function Creator() {
   const [formData, formErrors] = useForm();
@@ -14,6 +14,15 @@ export default function Creator() {
 
   return (
     <form {...$()} onSubmit={handleSubmit}>
+      <p {...$("error")}>{error}</p>
+      <Line
+        id="name"
+        type="text"
+        placeholder="Name"
+        formData={formData}
+        validator={useName(formErrors)}
+        ps={$("line").className}
+      />
       <Line
         id="email"
         type="text"
@@ -22,14 +31,6 @@ export default function Creator() {
         validator={useEmail(formErrors)}
         ps={$("line").className}
       />
-      {/* <Line
-        id="account"
-        type="text"
-        placeholder="Account number"
-        formData={formData}
-        validator={useAccount(formErrors)}
-        ps={$("line").className}
-      /> */}
       <Line
         id="balance"
         type="text"
@@ -38,7 +39,9 @@ export default function Creator() {
         validator={useCurrency(formErrors)}
         ps={$("line").className}
       />
-      <button type="submit">SUBMIT</button>
+      <button {...$("action")} type="submit">
+        {isLoading ? "* * *" : "Submit"}
+      </button>
     </form>
   );
 }

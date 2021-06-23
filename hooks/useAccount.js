@@ -1,5 +1,5 @@
-import getValidators from "../../helpers/validation/getValidators";
-import iterateCheck from "../../helpers/validation/iterateCheck";
+import getValidators from "../helpers/validation/getValidators";
+import iterateCheck from "../helpers/validation/iterateCheck";
 
 export default function useAccount(formErrors) {
   const numRgx = /^[0-9]+$/;
@@ -7,7 +7,7 @@ export default function useAccount(formErrors) {
     ["isRequired"],
     ["isInitial"],
     ["isValid", numRgx],
-    ["isLength", 4]
+    ["isLength", 6]
   ]);
   return function validator(fieldValue, id) {
     const error = iterateCheck(fieldValue, validators);

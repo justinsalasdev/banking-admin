@@ -1,4 +1,32 @@
 
 .creator
+  background: lighten($light, 5%)
+  box-shadow: .2rem .2rem .4rem rgba($navy,.1)
+  max-width: 20rem
+  width: 95%
+  padding: 1rem
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  // margin-inline: auto
+
+  &__error
+    color: lighten($red, 30%)
+    font-size: .7rem
+    margin-bottom: 1rem
+    min-height: 1.5rem
+    width: 100%
+    text-align: center
+
   &__line
     margin-bottom: 1rem
+
+  &__action
+    text-align: center
+    padding: .2rem 0
+    min-width: 4rem
+    background: $navy
+    color: $light
+    font-size: .8rem
+    border-radius: .2rem

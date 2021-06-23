@@ -1,5 +1,5 @@
-import getValidators from "../../helpers/validation/getValidators";
-import iterateCheck from "../../helpers/validation/iterateCheck";
+import getValidators from "../helpers/validation/getValidators";
+import iterateCheck from "../helpers/validation/iterateCheck";
 
 export default function useEmail(formErrors) {
   const emailRegex =

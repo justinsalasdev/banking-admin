@@ -3,9 +3,9 @@ import setUpAccount from "../../../helpers/createAccount/setupAccount";
 
 export default async function handler(req, res) {
   try {
-    const { email, balance } = req.body;
-    const userId = await createUser(email);
-    await setUpAccount(balance, userId);
+    const { email, name, balance } = req.body;
+    const userId = await createUser(email, name);
+    await setUpAccount(name, balance, userId);
     res.status(200).json({ userId });
   } catch (err) {
     res.status(500).json({ error: err });
@@ -15,4 +15,10 @@ export default async function handler(req, res) {
 /*
 1. create user credentials first 
 2. then create account details
+
+problem
+  if user credential is successfully created,
+  and account details failed,
+
+  user email can't be reused - manually delete to use again
  */

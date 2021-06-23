@@ -1,8 +1,8 @@
-import getValidators from "../../helpers/validation/getValidators";
-import iterateCheck from "../../helpers/validation/iterateCheck";
+import getValidators from "../helpers/validation/getValidators";
+import iterateCheck from "../helpers/validation/iterateCheck";
 
 export default function useCurrency(formErrors) {
-  const currencyRegex = /^[0-9]+(\.[0-9]{1,2})?$/; //used by HTML W3c
+  const currencyRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
   const validators = getValidators("amount", [
     ["isRequired"],
     ["isInitial"],
