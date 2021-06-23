@@ -38,7 +38,7 @@ export default function useDeposit(account, userId, oldBalance) {
           const result = await res.json();
 
           if (res.status === 200) {
-            router.replace(`/users/${userId}?${new Date().valueOf()}`);
+            router.replace(`/users/${userId}`);
             dispatch({ type: "done" });
           }
 
