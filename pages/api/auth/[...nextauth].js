@@ -7,18 +7,21 @@ export default NextAuth({
   providers: [
     Providers.Credentials({
       async authorize(credentials, req) {
-        console.log(credentials);
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: 1, name: "J Smith", email: "jsmith@example.com" };
+        const { email, password } = credentials;
 
-        if (user) {
+        if (
+          email === process.env.ADMIN_EMAIL &&
+          password === process.env.ADMIN_PASSWORD
+        ) {
           // Any object returned will be saved in `user` property of the JWT
-          return user;
+          return { email };
         } else {
           // If you return null or false then the credentials will be rejected
+          // return null;
+          // // You can also Reject this callback with an Error or with a URL:
           return null;
-          // You can also Reject this callback with an Error or with a URL:
-          // throw new Error('error message') // Redirect to error page
+          // throw new Error("wrong email or password"); // Redirect to error page
+          //error message will be available to router.query.error
           // throw '/path/to/redirect'        // Redirect to a URL
         }
       }
@@ -26,8 +29,8 @@ export default NextAuth({
   ],
 
   pages: {
-    signIn: "/auth/signin",
-    signOut: "/auth/signout",
+    // signIn: "/auth/signin",
+    // signOut: "/auth/signout",
     error: "/auth/error", // Error code passed in query string as ?error=
     verifyRequest: "/auth/verify-request", // (used for check email message)
     newUser: null // If set, new users will be directed here on first sign in

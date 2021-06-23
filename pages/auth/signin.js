@@ -1,11 +1,20 @@
 import Nav from "../../components/Nav/Nav";
 import Login from "../../components/Login/Login";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/client";
 
 export default function SignIn() {
+  const router = useRouter();
+  const [session, loading] = useSession();
+
+  if (session) {
+    router.replace("/");
+  }
+
   return (
     <>
       <Nav />
-      <main className="main">
+      <main className="main main--login">
         <Login />
       </main>
     </>

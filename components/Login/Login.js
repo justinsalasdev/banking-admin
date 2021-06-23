@@ -9,7 +9,7 @@ export default function Creator() {
   const [formData, formErrors] = useForm();
   const { isLoading, handleSubmit } = useLogin(formData, formErrors);
 
-  const $ = genClass({ block: "creator" });
+  const $ = genClass({ block: "creator", mods: { creator: ["login"] } });
 
   return (
     <form {...$()} onSubmit={handleSubmit}>

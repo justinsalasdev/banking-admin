@@ -10,8 +10,9 @@ export default function useLogin(formData, formErrors) {
     if (isClean(formErrors)) {
       setLoading(true);
       signIn("credentials", {
-        ...formData,
-        callbackUrl: "http://localhost:3000"
+        ...formData
+        // callbackUrl: `http://localhost:3000/users`
+        //no need to callBackuRL if intention is to redirect to root
       });
     } else {
       return;

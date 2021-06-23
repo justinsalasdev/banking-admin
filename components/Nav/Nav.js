@@ -1,7 +1,10 @@
+import { signOut } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import genClass from "../../helpers/genClass";
 import Link from "next/link";
 
 export default function Nav() {
+  const [session, loading] = useSession();
   const $ = genClass({ block: "nav" });
   return (
     <nav {...$()}>
@@ -9,16 +12,34 @@ export default function Nav() {
         <a {...$("home")}>HOME</a>
       </Link>
       <ul {...$("list")}>
-        <li {...$("item")}>
-          <Link href="/users">
-            <a {...$("link")}>USERS</a>
-          </Link>
-        </li>
-        <li {...$("item")}>
-          <Link href="/">
-            <a {...$("link")}>LOGOUT</a>
-          </Link>
-        </li>
+        {session && (
+          <li {...$("item")}>
+            <Link href="/users">
+              <a {...$("link")}>USERS</a>
+            </Link>
+          </li>
+        )}
+        {!session && (
+          <li {...$("item")}>
+            <Link href="/auth/signin">
+              <a {...$("link")}>LOGIN</a>
+            </Link>
+          </li>
+        )}
+        {session && (
+          <li {...$("item")}>
+            <button
+              {...$("logout")}
+              onClick={() => {
+                signOut({
+                  callbackUrl: `http://localhost:3000/auth/signin`
+                });
+              }}
+            >
+              LOGOUT
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );

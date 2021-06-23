@@ -23,7 +23,7 @@ export default function Transactor({ ps, cancel, transactor, placeholder }) {
         <button type="submit" {...$("action")}>
           {isLoading ? "* * *" : <Icon type="send" />}
         </button>
-        <button {...$("action")} onClick={cancel}>
+        <button type="button" {...$("action")} onClick={cancel}>
           <Icon type="cancel" />
         </button>
       </div>
