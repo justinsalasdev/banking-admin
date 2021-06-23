@@ -51,7 +51,7 @@ export default function useTransfer(account, userId, oldBalance) {
 
           if (res.status === 200) {
             //unique query params to retrigger getServersideProps
-            router.replace(`/users/${userId}`);
+            router.replace(`/prompts/success`);
             dispatch({ type: "done" });
           }
 

@@ -43,7 +43,7 @@ export default function useWithdraw(account, userId, oldBalance) {
           const result = await res.json();
 
           if (res.status === 200) {
-            router.replace(`/users/${userId}`);
+            router.replace(`/prompts/success`);
             dispatch({ type: "done" });
           }
 
