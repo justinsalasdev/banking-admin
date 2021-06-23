@@ -7,6 +7,8 @@ import { BsInfoSquareFill } from "react-icons/bs";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import { ImCancelCircle } from "react-icons/im";
+import { MdSecurity } from "react-icons/md";
+import { AiFillWarning } from "react-icons/ai";
 import genClass from "../../helpers/genClass";
 
 const icons = {
@@ -19,6 +21,8 @@ const icons = {
   add: <BsFillPersonPlusFill />,
   send: <IoMdSend />,
   cancel: <ImCancelCircle />,
+  shield: <MdSecurity />,
+  warning: <AiFillWarning />,
   none: ""
 };
 

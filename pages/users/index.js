@@ -1,13 +1,16 @@
 import { admin } from "../../firebase/initAdmin";
 import Nav from "../../components/Nav/Nav";
 import UserTable from "../../components/Users/Users";
+import { useSession } from "next-auth/client";
+import Prompt from "../../components/Prompt/Prompt";
 
 export default function Users({ users }) {
+  const [session, loading] = useSession();
   return (
     <>
       <Nav />
       <main className="main">
-        <UserTable users={users} />
+        {(session && <UserTable users={users} />) || <Prompt />}
       </main>
     </>
   );
