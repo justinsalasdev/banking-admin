@@ -1,8 +1,8 @@
-import { admin } from "../../firebase/initAdmin";
 import Nav from "../../components/Nav/Nav";
 import UserTable from "../../components/Users/Users";
 import { useSession } from "next-auth/client";
 import Prompt from "../../components/Prompt/Prompt";
+import getUsers from "../../helpers/getUsers";
 
 export default function Users({ users }) {
   const [session, loading] = useSession();
@@ -16,19 +16,8 @@ export default function Users({ users }) {
   );
 }
 
-export async function getStaticProps(context) {
-  async function getUsers(/*nextToken*/) {
-    const result = await admin.auth().listUsers(1000);
-    return Promise.resolve(
-      result.users.map(user => {
-        const { uid, email, displayName } = user.toJSON();
-        return { uid, email, name: displayName || "User" };
-      })
-    );
-  }
-
+export async function getStaticProps() {
   const users = await getUsers();
-
   return {
     props: {
       users: users
