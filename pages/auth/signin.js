@@ -8,7 +8,7 @@ export default function SignIn() {
   const [session, loading] = useSession();
 
   if (session) {
-    router.replace("/");
+    router.push("/");
   }
 
   return (

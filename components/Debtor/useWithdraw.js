@@ -36,7 +36,7 @@ export default function useDeposit(
           const result = await res.json();
 
           if (res.status === 200) {
-            router.replace(`/users/${userId}`);
+            router.push(`/users/${userId}`);
             dispatch({ type: "done" });
           }
 
