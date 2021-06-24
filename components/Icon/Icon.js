@@ -1,14 +1,10 @@
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdSecurity } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { HiUserCircle } from "react-icons/hi";
-import { AiOutlineNumber } from "react-icons/ai";
-import { IoLogoBitcoin } from "react-icons/io";
-import { BsInfoSquareFill } from "react-icons/bs";
-import { BsFillPersonPlusFill } from "react-icons/bs";
-import { IoMdSend } from "react-icons/io";
-import { ImCancelCircle } from "react-icons/im";
-import { MdSecurity } from "react-icons/md";
-import { AiFillWarning } from "react-icons/ai";
+import { BsInfoSquareFill, BsFillPersonPlusFill } from "react-icons/bs";
+import { IoMdSend, IoLogoBitcoin } from "react-icons/io";
+import { ImCancelCircle, ImCheckboxChecked } from "react-icons/im";
+import { AiFillWarning, AiOutlineNumber } from "react-icons/ai";
 import genClass from "../../helpers/genClass";
 
 const icons = {
@@ -23,6 +19,7 @@ const icons = {
   cancel: <ImCancelCircle />,
   shield: <MdSecurity />,
   warning: <AiFillWarning />,
+  success: <ImCheckboxChecked />,
   none: ""
 };
 

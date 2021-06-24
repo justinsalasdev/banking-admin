@@ -1,12 +1,16 @@
 import Nav from "../../components/Nav/Nav";
-import { Success } from "../../components/Prompt/Prompt";
+import { PromptLink } from "../../components/Prompt/Prompt";
 
-export default function Error() {
+export default function Success() {
   return (
     <>
       <Nav />
-      <main className="main">
-        <Success />
+      <main className="main main--prompt">
+        <PromptLink
+          type="success"
+          icon="success"
+          message="Transaction successful"
+        />
       </main>
     </>
   );
