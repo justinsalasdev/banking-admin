@@ -71,6 +71,9 @@ export default function Welcome() {
           })}
         </ul>
       </section>
+      <footer {...$("footer")}>
+        DESIGNED AND BUILT BY <span {...$("author")}>JUSTIN SALAS</span>
+      </footer>
     </div>
   );
 }

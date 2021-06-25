@@ -1,11 +1,11 @@
 
 $pl: .7rem
+
 .welcome
   padding: .5rem
   padding-left: 0
-  max-width: 40rem
+  max-width: 30rem
   width: 95%
-  min-height: 20vh
   background: rgba($light,0.6)
   color: rgba($light,0.8)
   border-radius: .2rem
@@ -40,10 +40,12 @@ $pl: .7rem
 
   &__techs
     display: flex
-    margin-left: 1.8rem
+    flex-wrap: wrap
+    margin-left: $pl
+    margin-top: 1rem
 
   &__tech
-    margin: 1rem .5rem
+    margin: .5rem .2rem
     font-size: 2.2rem
     width: 4rem
     height: 4rem
@@ -51,3 +53,15 @@ $pl: .7rem
     align-items: center
     justify-content: center
     box-shadow: .2rem .2rem .4rem rgba($dark, 0.2)
+
+  &__footer
+    margin-top: .5rem
+    padding-left: $pl
+    font-size: .7rem
+    font-weight: 300
+    color: $navy
+
+  &__author
+    font-weight: 700
+    font-size: .8rem
+    color: $dark
