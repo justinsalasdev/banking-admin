@@ -1,13 +1,15 @@
 import Nav from "../components/Nav/Nav";
-import { useSession } from "next-auth/client";
+import genClass from "../helpers/genClass";
+import Welcome from "../components/Welcome/Welcome";
 
 export default function Home() {
-  const [session, loading] = useSession();
-
+  const $ = genClass({ block: "main" });
   return (
     <>
       <Nav />
-      <div>{session && <p>Signed in as {session.user.email}</p>}</div>
+      <main {...$()}>
+        <Welcome />
+      </main>
     </>
   );
 }

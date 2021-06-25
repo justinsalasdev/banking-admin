@@ -1,0 +1,53 @@
+
+$pl: .7rem
+.welcome
+  padding: .5rem
+  padding-left: 0
+  max-width: 40rem
+  width: 95%
+  min-height: 20vh
+  background: rgba($light,0.6)
+  color: rgba($light,0.8)
+  border-radius: .2rem
+
+  &__title
+    font-size: 1.5rem
+    padding-left: $pl
+    font-weight: 800
+    color: $dark
+    margin-bottom: .5rem
+    // text-shadow: .1rem .1rem .2rem $navy
+
+  &__section
+    margin-bottom: 1rem
+
+  &__ribbon
+    filter: drop-shadow(.1rem .1rem .2rem rgba($navy,0.5))
+  &__list-name
+    clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0 100%, 0% 50%, 0 0)
+    padding-left: $pl
+    padding-right: 2rem
+    display: inline-block
+    background: $navy
+    font-weight: 400
+    text-transform: uppercase
+
+  &__req
+    color: $navy
+    margin-block: .2rem
+    list-style: circle
+    margin-left: 1.8rem
+
+  &__techs
+    display: flex
+    margin-left: 1.8rem
+
+  &__tech
+    margin: 1rem .5rem
+    font-size: 2.2rem
+    width: 4rem
+    height: 4rem
+    display: flex
+    align-items: center
+    justify-content: center
+    box-shadow: .2rem .2rem .4rem rgba($dark, 0.2)
