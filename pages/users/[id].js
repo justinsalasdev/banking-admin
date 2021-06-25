@@ -1,33 +1,39 @@
-// import { useRouter } from "next/router";
-import { db } from "../../firebase/initAdmin";
+import { useEffect, useState } from "react";
 import Nav from "../../components/Nav/Nav";
-import Account from "../../components/Account/Account";
 import getUsers from "../../helpers/getUsers";
+import Account from "../../components/Account/Account";
 
-export default function User(props) {
+export default function User({ userId }) {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    console.log("effect runs");
+    async function getUser() {
+      try {
+        const res = await fetch(`/api/users/${userId}`);
+        const result = await res.json();
+        setUser(result);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getUser();
+  }, []);
   return (
     <>
       <Nav />
-      <main className="main">
-        <Account details={props} />
-      </main>
+      {(user && (
+        <main className="main">
+          {" "}
+          <Account details={user} />
+        </main>
+      )) || <p>Loading</p>}
     </>
   );
 }
 
 export async function getStaticProps(context) {
   const userId = context.params.id;
-  const querySnapshot = await db
-    .collection("Accounts")
-    .where("owner", "==", userId)
-    .get();
-
-  const matched = [];
-  querySnapshot.forEach(doc =>
-    matched.push({ account: doc.id, ...doc.data() })
-  );
-
-  return { props: { userId, ...matched[0] } };
+  return { props: { userId } };
 }
 
 export async function getStaticPaths() {

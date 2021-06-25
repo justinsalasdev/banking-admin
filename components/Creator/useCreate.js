@@ -15,7 +15,7 @@ export default function useCreate(formData, formErrors) {
     if (isClean(formErrors)) {
       dispatch({ type: "start" });
       try {
-        const res = await fetch("/api/user/create", {
+        const res = await fetch("/api/users/create", {
           body: JSON.stringify({
             ...formData,
             balance: Number(formData.balance)

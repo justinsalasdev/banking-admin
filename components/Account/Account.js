@@ -20,7 +20,8 @@ const transactors = {
 };
 
 export default function Account({ details }) {
-  const { name, account, balance, userId } = details;
+  console.log(details);
+  const { name, account, balance, owner: userId } = details;
   const [action, setAction] = useState({
     type: "initial",
     started: false

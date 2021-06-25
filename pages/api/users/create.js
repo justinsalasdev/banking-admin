@@ -2,6 +2,7 @@ import createUser from "../../../helpers/createAccount/createUser";
 import setUpAccount from "../../../helpers/createAccount/setupAccount";
 
 export default async function handler(req, res) {
+  console.log("create user");
   try {
     const { email, name, balance } = req.body;
     const userId = await createUser(email, name);
