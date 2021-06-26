@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Icon from "../Icon/Icon";
 import { motion } from "framer-motion";
-import { listVars, tableVars, userVars } from "./variants";
+import { listVars, tableVars } from "./variants";
 
 export default function Users({ users, ps }) {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function Users({ users, ps }) {
         </Link>
       </div>
       <motion.ul variants={listVars} {...$("list")}>
-        {users.map(user => (
+        {users?.map(user => (
           <li
             {...$("user")}
             key={user.uid}
