@@ -1,0 +1,47 @@
+
+.history
+
+  &__entry
+    margin: .5rem
+    width: 30rem
+    // height: rem
+    background: $navy
+    color: $light
+    display: flex
+    align-items: center
+
+  &__type
+    padding: .5rem
+
+  &__details
+    width: 100%
+    align-self: stretch
+    color: $dark
+    background: $light
+    display: grid
+    align-items: center
+    justify-items: start
+    grid-template-rows: auto 1fr auto
+
+  &__account
+    font-size: .7rem
+    margin-left: .4rem
+
+  &__date
+    font-size: .7rem
+    justify-self: end
+    margin-right: .4rem
+
+  &__amount
+    width: 100%
+    justify-self: start
+    padding: 0 .5rem
+    font-size: 1.4rem
+    display: flex
+    align-items: baseline
+    justify-content: space-between
+    span:first-of-type
+      font-weight: 700
+    span:last-of-type
+      font-size: .9rem
+      color: green
