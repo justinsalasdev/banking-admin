@@ -16,5 +16,6 @@ if (!admin.apps.length) {
     })
   });
 }
+const FieldValue = admin.firestore.FieldValue;
 const db = admin.firestore();
-export { admin, db };
+export { admin, db, FieldValue };

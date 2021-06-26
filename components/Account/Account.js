@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import genClass, { toggler as $t } from "../../helpers/genClass";
+import genClass from "../../helpers/genClass";
 import toCurrency from "../../helpers/toCurrency";
 import Sender from "../Sender/Sender";
 import useTransfer from "../Sender/useTransfer";
 import Transactor from "../Transactor/Transactor";
-import useDeposit from "../Transactor/useDeposit";
-import useWithdraw from "../Transactor/useWithdraw";
 import { motion } from "framer-motion";
 import { variants } from "./variants";
+import useTransact from "../Transactor/useTransact";
 
 const forms = {
   deposit: Transactor,
@@ -16,8 +15,8 @@ const forms = {
 };
 
 const transactors = {
-  deposit: useDeposit,
-  withdraw: useWithdraw,
+  deposit: useTransact,
+  withdraw: useTransact,
   transfer: useTransfer
 };
 
@@ -61,9 +60,15 @@ export default function Account({ details }) {
         })}
       </div>
 
+      {/*FORM CHANGE LOGIC*/}
       {action.started &&
         React.createElement(forms[action.type], {
-          transactor: transactors[action.type](account, userId, balance),
+          transactor: transactors[action.type](
+            account,
+            userId,
+            balance,
+            action.type
+          ),
           placeholder: `Amount to ${action.type}`,
           ps: $("form").className,
           cancel: handleCancel(action.type)

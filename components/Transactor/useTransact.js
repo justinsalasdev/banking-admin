@@ -1,29 +1,24 @@
+//start
 import isClean from "../../helpers/validation/isClean";
 import { useRouter } from "next/router";
 import { useReducer } from "react";
 import transactionReducer from "../../reducers/transactionReducer";
 
-export default function useWithdraw(account, userId, oldBalance) {
-  return function useWithdraw(formData, formErrors) {
+export default function useTransact(account, userId, oldBalance, type) {
+  return function useDeposit(formData, formErrors) {
     const router = useRouter();
     const [state, dispatch] = useReducer(transactionReducer, {
       oldBalance,
       error: null,
       isLoading: false
     });
-
     async function handleSubmit(e) {
       e.preventDefault();
       const { balance } = formData;
       const amount = Number(balance);
 
-      if (amount > oldBalance) {
-        dispatch({ type: "error", payload: "not enough balance" });
-        return;
-      }
-
       if (amount < 100) {
-        dispatch({ type: "error", payload: "minimum withdrawal of B100" });
+        dispatch({ type: "error", payload: "minimum deposit of B100" });
         return;
       }
 
@@ -32,7 +27,7 @@ export default function useWithdraw(account, userId, oldBalance) {
         try {
           const res = await fetch("/api/account/transact", {
             body: JSON.stringify({
-              newBalance: oldBalance - amount,
+              amount: amount * (type === "deposit" ? 1 : -1),
               account
             }),
             headers: {

@@ -1,10 +1,12 @@
-import { db } from "../../firebase/initAdmin";
+import { db, FieldValue } from "../../firebase/initAdmin";
 export default function transfer(account, destination, amount) {
   return new Promise(async (resolve, reject) => {
     try {
       const accountsRef = db.collection("Accounts");
       const accountRef = accountsRef.doc(account);
+      const accountHistoryRef = accountRef.collection("History").doc();
       const destinationRef = accountsRef.doc(destination);
+      const destinationHistoryRef = destinationRef.collection("History").doc();
 
       await db.runTransaction(async transactor => {
         try {
@@ -24,6 +26,20 @@ export default function transfer(account, destination, amount) {
             })
             .update(destinationRef, {
               balance: destinationBalance + amount
+            })
+            .set(accountHistoryRef, {
+              runningBalance: accountBalance - amount,
+              to: destination,
+              amount: -amount,
+              timeStamp: FieldValue.serverTimestamp(),
+              type: "transfer"
+            })
+            .set(destinationHistoryRef, {
+              runningBalance: destinationBalance + amount,
+              from: account,
+              amount,
+              timeStamp: FieldValue.serverTimestamp(),
+              type: "received"
             });
 
           resolve();

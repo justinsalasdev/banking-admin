@@ -1,7 +1,7 @@
 import genClass from "../../helpers/genClass";
 import { motion } from "framer-motion";
 import Icon from "../Icon/Icon";
-import { blockVars, sectionVars, techVars, titleVars } from "./variants";
+import { blockVars, sectionVars, techVars } from "./variants";
 import { iconTypes, optionals, reqs } from "./static";
 
 export default function Welcome() {
