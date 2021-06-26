@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import genClass from "../../helpers/genClass";
+import genClass, { toggler as $t } from "../../helpers/genClass";
 import toCurrency from "../../helpers/toCurrency";
 import Sender from "../Sender/Sender";
 import useTransfer from "../Sender/useTransfer";
@@ -7,17 +7,7 @@ import Transactor from "../Transactor/Transactor";
 import useDeposit from "../Transactor/useDeposit";
 import useWithdraw from "../Transactor/useWithdraw";
 import { motion } from "framer-motion";
-
-const variants = {
-  hidden: {
-    opacity: 0,
-    x: -10
-  },
-  shown: {
-    opacity: 1,
-    x: 0
-  }
-};
+import { variants } from "./variants";
 
 const forms = {
   deposit: Transactor,
@@ -38,13 +28,20 @@ export default function Account({ details }) {
     started: false
   });
 
+  function handleFormChange(type) {
+    return () => setAction({ type, started: true });
+  }
+
   function handleCancel(type) {
     return function () {
       setAction({ type, started: false });
     };
   }
 
-  const $ = genClass({ block: "account" });
+  const buttons = ["deposit", "withdraw", "transfer"];
+
+  const $ = genClass({ block: "account", mods: { [action.type]: ["active"] } });
+
   return (
     <motion.div {...$()} variants={variants} animate="shown" initial="hidden">
       <div {...$("bar")}>
@@ -55,24 +52,13 @@ export default function Account({ details }) {
         <p {...$("balance")}>₿{toCurrency(balance)}</p>
       </div>
       <div {...$("actions")}>
-        <button
-          {...$("deposit")}
-          onClick={() => setAction({ type: "deposit", started: true })}
-        >
-          DEPOSIT
-        </button>
-        <button
-          {...$("withdraw")}
-          onClick={() => setAction({ type: "withdraw", started: true })}
-        >
-          WITHDRAW
-        </button>
-        <button
-          {...$("transfer")}
-          onClick={() => setAction({ type: "transfer", started: true })}
-        >
-          TRANSFER
-        </button>
+        {buttons.map((text, index) => {
+          return (
+            <button key={index} {...$(text)} onClick={handleFormChange(text)}>
+              {text}
+            </button>
+          );
+        })}
       </div>
 
       {action.started &&

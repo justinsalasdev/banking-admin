@@ -1,18 +1,20 @@
 import Line from "../Line/Line";
-import genClass from "../../helpers/genClass";
+import genClass, { toggler as $t } from "../../helpers/genClass";
 import useCreate from "./useCreate";
 import useCurrency from "../../hooks/useCurrency";
 import useName from "../../hooks/useName";
 import useEmail from "../../hooks/useEmail";
 import useForm from "../../hooks/useForm";
 import { motion } from "framer-motion";
-import { formVars } from "./variants";
+import { formVars, btnVars } from "./variants";
 
 export default function Creator() {
   const [formData, formErrors] = useForm();
   const { isLoading, error, handleSubmit } = useCreate(formData, formErrors);
-
-  const $ = genClass({ block: "creator" });
+  const $ = genClass({
+    block: "creator",
+    mods: { action: [$t(isLoading, "loading")] }
+  });
 
   return (
     <motion.form
@@ -47,9 +49,14 @@ export default function Creator() {
         validator={useCurrency(formErrors)}
         ps={$("line").className}
       />
-      <button {...$("action")} type="submit">
-        {isLoading ? "* * *" : "Submit"}
-      </button>
+      <motion.button
+        variants={btnVars}
+        animate={isLoading ? "submit" : ""}
+        {...$("action")}
+        type="submit"
+      >
+        {isLoading ? "" : "Submit"}
+      </motion.button>
     </motion.form>
   );
 }
