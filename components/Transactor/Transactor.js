@@ -4,7 +4,7 @@ import useForm from "../../hooks/useForm";
 import Icon from "../Icon/Icon";
 import Line from "../Line/Line";
 import { motion } from "framer-motion";
-import { buttonVars, variants } from "./variants";
+import { buttonVars, submitVars, variants } from "./variants";
 
 export default function Transactor({ ps, cancel, transactor, placeholder }) {
   const $ = genClass({ block: "transactor", ps });
@@ -23,9 +23,14 @@ export default function Transactor({ ps, cancel, transactor, placeholder }) {
         mods={{ div: ["transactor"] }}
       />
       <motion.div {...$("actions")} variants={buttonVars}>
-        <button type="submit" {...$("action")}>
-          {isLoading ? "* * *" : <Icon type="send" />}
-        </button>
+        <motion.button
+          variants={submitVars}
+          animate={isLoading ? "submit" : ""}
+          type="submit"
+          {...$("action")}
+        >
+          <Icon type="send" />
+        </motion.button>
         <button type="button" {...$("action")} onClick={cancel}>
           <Icon type="cancel" />
         </button>

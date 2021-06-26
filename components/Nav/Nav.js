@@ -5,7 +5,12 @@ import Link from "next/link";
 
 export default function Nav() {
   const [session, loading] = useSession();
+
   const $ = genClass({ block: "nav" });
+
+  if (loading) {
+    return <NoNav />;
+  }
   return (
     <nav {...$()}>
       <Link href="/">
@@ -43,4 +48,9 @@ export default function Nav() {
       </ul>
     </nav>
   );
+}
+
+function NoNav() {
+  const $ = genClass({ block: "nav", mods: { nav: ["none"] } });
+  return <nav {...$()}></nav>;
 }

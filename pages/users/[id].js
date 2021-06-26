@@ -37,6 +37,6 @@ export async function getStaticPaths() {
   const users = await getUsers();
   return {
     paths: users.map(user => ({ params: { id: user.uid } })),
-    fallback: false
+    fallback: true
   };
 }

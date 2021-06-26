@@ -3,6 +3,7 @@ import UserTable from "../../components/Users/Users";
 import { useSession } from "next-auth/client";
 import Prompt from "../../components/Prompt/Prompt";
 import getUsers from "../../helpers/getUsers";
+import Loader from "../../components/Loader/Loader";
 
 export default function Users({ users }) {
   const [session, loading] = useSession();
@@ -10,7 +11,7 @@ export default function Users({ users }) {
     <>
       <Nav />
       <main className="main">
-        {(session && <UserTable users={users} />) || (
+        {(loading ? <Loader /> : session && <UserTable users={users} />) || (
           <Prompt
             type="error"
             icon="shield"
@@ -27,6 +28,7 @@ export async function getStaticProps() {
   return {
     props: {
       users: users
-    }
+    },
+    revalidate: 1
   };
 }

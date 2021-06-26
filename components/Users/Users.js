@@ -2,12 +2,14 @@ import genClass from "../../helpers/genClass";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Icon from "../Icon/Icon";
+import { motion } from "framer-motion";
+import { listVars, tableVars, userVars } from "./variants";
 
 export default function Users({ users, ps }) {
   const router = useRouter();
   const $ = genClass({ block: "users", ps });
   return (
-    <div {...$()}>
+    <motion.div variants={tableVars} initial="hidden" animate="shown" {...$()}>
       <div {...$("bar")}>
         <Link href="/users/new">
           <a>
@@ -15,7 +17,7 @@ export default function Users({ users, ps }) {
           </a>
         </Link>
       </div>
-      <ul {...$("list")}>
+      <motion.ul variants={listVars} {...$("list")}>
         {users.map(user => (
           <li
             {...$("user")}
@@ -31,7 +33,7 @@ export default function Users({ users, ps }) {
             </div>
           </li>
         ))}
-      </ul>
-    </div>
+      </motion.ul>
+    </motion.div>
   );
 }

@@ -5,7 +5,7 @@ import useForm from "../../hooks/useForm";
 import Icon from "../Icon/Icon";
 import Line from "../Line/Line";
 import { motion } from "framer-motion";
-import { buttonVars, variants } from "../Sender/variants";
+import { buttonVars, submitVars, variants } from "../Sender/variants";
 
 export default function Sender({ ps, cancel, transactor, placeholder }) {
   const [formData, formErrors] = useForm();
@@ -36,9 +36,14 @@ export default function Sender({ ps, cancel, transactor, placeholder }) {
         mods={{ div: ["transactor"] }}
       />
       <motion.div {...$("actions")} variants={buttonVars}>
-        <button type="submit" {...$("action")}>
-          {isLoading ? "* * *" : <Icon type="send" />}
-        </button>
+        <motion.button
+          variants={submitVars}
+          animate={isLoading ? "submit" : ""}
+          type="submit"
+          {...$("action")}
+        >
+          <Icon type="send" />
+        </motion.button>
         <button type="button" {...$("action")} onClick={cancel}>
           <Icon type="cancel" />
         </button>

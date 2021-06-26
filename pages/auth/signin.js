@@ -2,20 +2,20 @@ import Nav from "../../components/Nav/Nav";
 import Login from "../../components/Login/Login";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/client";
+import Loader from "../../components/Loader/Loader";
 
 export default function SignIn() {
   const router = useRouter();
   const [session, loading] = useSession();
 
-  if (session) {
+  if (session && !loading) {
     router.push("/");
   }
-
   return (
     <>
       <Nav />
       <main className="main main--login">
-        <Login />
+        {loading ? <Loader /> : <Login />}
       </main>
     </>
   );

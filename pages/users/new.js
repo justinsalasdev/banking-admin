@@ -2,6 +2,7 @@ import Nav from "../../components/Nav/Nav";
 import Creator from "../../components/Creator/Creator";
 import { useSession } from "next-auth/client";
 import Prompt from "../../components/Prompt/Prompt";
+import Loader from "../../components/Loader/Loader";
 
 export default function New() {
   const [session, loading] = useSession();
@@ -9,7 +10,7 @@ export default function New() {
     <>
       <Nav />
       <main className="main main--new">
-        {(session && <Creator />) || <Prompt />}
+        {loading ? <Loader /> : (session && <Creator />) || <Prompt />}
       </main>
     </>
   );

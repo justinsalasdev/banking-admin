@@ -5,6 +5,8 @@ import useCurrency from "../../hooks/useCurrency";
 import useName from "../../hooks/useName";
 import useEmail from "../../hooks/useEmail";
 import useForm from "../../hooks/useForm";
+import { motion } from "framer-motion";
+import { formVars } from "./variants";
 
 export default function Creator() {
   const [formData, formErrors] = useForm();
@@ -13,7 +15,13 @@ export default function Creator() {
   const $ = genClass({ block: "creator" });
 
   return (
-    <form {...$()} onSubmit={handleSubmit}>
+    <motion.form
+      variants={formVars}
+      initial="hidden"
+      animate="shown"
+      {...$()}
+      onSubmit={handleSubmit}
+    >
       <p {...$("error")}>{error}</p>
       <Line
         id="name"
@@ -42,6 +50,6 @@ export default function Creator() {
       <button {...$("action")} type="submit">
         {isLoading ? "* * *" : "Submit"}
       </button>
-    </form>
+    </motion.form>
   );
 }
