@@ -16,6 +16,7 @@ if (!admin.apps.length) {
     })
   });
 }
+const TimeStamp = admin.firestore.Timestamp;
 const FieldValue = admin.firestore.FieldValue;
 const db = admin.firestore();
-export { admin, db, FieldValue };
+export { admin, db, FieldValue, TimeStamp };

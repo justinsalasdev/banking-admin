@@ -21,6 +21,7 @@ const transactors = {
 };
 
 export default function Account({ details }) {
+  console.log(details);
   const { name, account, balance, owner: userId } = details;
   const [action, setAction] = useState({
     type: "initial",
