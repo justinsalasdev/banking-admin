@@ -7,7 +7,7 @@ export default function Success() {
   return (
     <>
       <Nav />
-      <main className="main main--prompt">
+      <main className="main">
         <PromptLink
           type="success"
           icon="success"

@@ -4,6 +4,8 @@ import useAccount from "../../hooks/useAccount";
 import useForm from "../../hooks/useForm";
 import Icon from "../Icon/Icon";
 import Line from "../Line/Line";
+import { motion } from "framer-motion";
+import { buttonVars, variants } from "../Sender/variants";
 
 export default function Sender({ ps, cancel, transactor, placeholder }) {
   const [formData, formErrors] = useForm();
@@ -14,7 +16,7 @@ export default function Sender({ ps, cancel, transactor, placeholder }) {
     mods: { transactor: ["sender"], actions: ["sender"] }
   });
   return (
-    <form {...$()} onSubmit={handleSubmit}>
+    <motion.form {...$()} onSubmit={handleSubmit} variants={variants}>
       <Line
         id="account"
         type="text"
@@ -33,16 +35,16 @@ export default function Sender({ ps, cancel, transactor, placeholder }) {
         ps={$("line").className}
         mods={{ div: ["transactor"] }}
       />
-      <div {...$("actions")}>
+      <motion.div {...$("actions")} variants={buttonVars}>
         <button type="submit" {...$("action")}>
           {isLoading ? "* * *" : <Icon type="send" />}
         </button>
         <button type="button" {...$("action")} onClick={cancel}>
           <Icon type="cancel" />
         </button>
-      </div>
+      </motion.div>
       {error && <p {...$("toolkit")}>{error}</p>}
-    </form>
+    </motion.form>
   );
 }
 

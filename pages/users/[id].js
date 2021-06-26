@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Nav from "../../components/Nav/Nav";
 import getUsers from "../../helpers/getUsers";
 import Account from "../../components/Account/Account";
+import Loader from "../../components/Loader/Loader";
 
 export default function User({ userId }) {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    console.log("effect runs");
     async function getUser() {
       try {
         const res = await fetch(`/api/users/${userId}`);
@@ -21,12 +21,9 @@ export default function User({ userId }) {
   return (
     <>
       <Nav />
-      {(user && (
-        <main className="main">
-          {" "}
-          <Account details={user} />
-        </main>
-      )) || <p>Loading</p>}
+      <main className="main">
+        {(user && <Account details={user} />) || <Loader />}
+      </main>
     </>
   );
 }

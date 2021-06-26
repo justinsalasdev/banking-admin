@@ -1,5 +1,12 @@
-import Prompt from "../components/Prompt/Prompt";
-
+import Loader from "../components/Loader/Loader";
+import Nav from "../components/Nav/Nav";
 export default function Test() {
-  return <Prompt />;
+  return (
+    <>
+      <Nav />
+      <main className="main">
+        <Loader />
+      </main>
+    </>
+  );
 }

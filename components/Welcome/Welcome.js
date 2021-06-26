@@ -46,6 +46,7 @@ export default function Welcome() {
           <h3 {...$("list-name")}>Optionals</h3>
         </span>
         <ul {...$("reqs")}>
+          <li {...$("req")}>transaction history</li>
           <li {...$("req")}>close an account</li>
           <li {...$("req")}>change account data</li>
           <li {...$("req")}>multiple accounts</li>

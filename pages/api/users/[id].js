@@ -1,7 +1,6 @@
 import getUser from "../../../helpers/getUser";
 
 export default async function handler(req, res) {
-  console.log("getUser");
   try {
     const { id: userId } = req.query;
     const user = await getUser(userId);

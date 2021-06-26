@@ -6,6 +6,18 @@ import useTransfer from "../Sender/useTransfer";
 import Transactor from "../Transactor/Transactor";
 import useDeposit from "../Transactor/useDeposit";
 import useWithdraw from "../Transactor/useWithdraw";
+import { motion } from "framer-motion";
+
+const variants = {
+  hidden: {
+    opacity: 0,
+    x: -10
+  },
+  shown: {
+    opacity: 1,
+    x: 0
+  }
+};
 
 const forms = {
   deposit: Transactor,
@@ -20,7 +32,6 @@ const transactors = {
 };
 
 export default function Account({ details }) {
-  console.log(details);
   const { name, account, balance, owner: userId } = details;
   const [action, setAction] = useState({
     type: "initial",
@@ -35,7 +46,7 @@ export default function Account({ details }) {
 
   const $ = genClass({ block: "account" });
   return (
-    <div {...$()}>
+    <motion.div {...$()} variants={variants} animate="shown" initial="hidden">
       <div {...$("bar")}>
         <p {...$("name")}>{name}</p>
         <p {...$("account")}>{account}</p>
@@ -71,6 +82,6 @@ export default function Account({ details }) {
           ps: $("form").className,
           cancel: handleCancel(action.type)
         })}
-    </div>
+    </motion.div>
   );
 }

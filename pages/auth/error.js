@@ -5,7 +5,7 @@ export default function Error() {
   return (
     <>
       <Nav />
-      <main className="main main--prompt">
+      <main className="main">
         <Prompt type="error" icon="warning" message="Invalid credentials" />
       </main>
     </>
