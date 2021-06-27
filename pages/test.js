@@ -1,5 +1,6 @@
 import Nav from "../components/Nav/Nav";
 import genClass from "../helpers/genClass";
+import History from "../components/History/History";
 
 const history = [
   {
@@ -33,50 +34,13 @@ const history = [
   }
 ];
 
-export default function History() {
+export default function Test() {
   const $ = genClass({ block: "history" });
   return (
     <>
       <Nav />
       <main className="main">
-        <div {...$()}>
-          <div {...$("bar")}></div>
-          <ul {...$("entries")}>
-            <li {...$("entry")}>
-              <span {...$("type")}>DEPOSIT</span>
-              <div {...$("details")}>
-                <span {...$("account")}>FROM : 000007</span>
-                <div {...$("amount")}>
-                  <span>B 1,000.00</span>
-                  <span>B 123,123.00</span>
-                </div>
-                <time {...$("date")}>June 26, 2021 18:46</time>
-              </div>
-            </li>
-            <li {...$("entry")}>
-              <span {...$("type")}>DEPOSIT</span>
-              <div {...$("details")}>
-                <span {...$("account")}>FROM : 000007</span>
-                <div {...$("amount")}>
-                  <span>B 1,000.00</span>
-                  <span>B 123,123.00</span>
-                </div>
-                <time {...$("date")}>June 26, 2021 18:46</time>
-              </div>
-            </li>
-            <li {...$("entry")}>
-              <span {...$("type")}>DEPOSIT</span>
-              <div {...$("details")}>
-                <span {...$("account")}>FROM : 000007</span>
-                <div {...$("amount")}>
-                  <span>B 1,000.00</span>
-                  <span>B 123,123.00</span>
-                </div>
-                <time {...$("date")}>June 26, 2021 18:46</time>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <History />
       </main>
     </>
   );

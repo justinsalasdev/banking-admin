@@ -34,8 +34,6 @@ export default function useCreate(formData, formErrors) {
         if (res.status === 500) {
           dispatch({ type: "error", payload: result.error });
         }
-
-        console.log(result);
       } catch (err) {
         dispatch({ type: "error", payload: "Unknown error occured" });
       }

@@ -1,28 +1,24 @@
-import { useEffect, useState } from "react";
 import Nav from "../../components/Nav/Nav";
 import getUsers from "../../helpers/getUsers";
 import Account from "../../components/Account/Account";
 import Loader from "../../components/Loader/Loader";
+import History from "../../components/History/History";
+import useUser from "../../hooks/useUser";
+import genClass from "../../helpers/genClass";
 
 export default function User({ userId }) {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const res = await fetch(`/api/users/${userId}`);
-        const result = await res.json();
-        setUser(result);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getUser();
-  }, []);
+  const { user, isReady } = useUser(userId);
+  const $ = genClass({ block: "main", mods: { main: ["user"] } });
   return (
     <>
       <Nav />
-      <main className="main">
-        {(user && <Account details={user} />) || <Loader />}
+      <main {...$()}>
+        {(isReady && (
+          <>
+            <Account ps={$("account").className} details={user} />
+            <History ps={$("history").className} transactions={user.history} />
+          </>
+        )) || <Loader />}
       </main>
     </>
   );

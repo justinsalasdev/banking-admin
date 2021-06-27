@@ -20,8 +20,7 @@ const transactors = {
   transfer: useTransfer
 };
 
-export default function Account({ details }) {
-  console.log(details);
+export default function Account({ details, ps }) {
   const { name, account, balance, owner: userId } = details;
   const [action, setAction] = useState({
     type: "initial",
@@ -40,7 +39,11 @@ export default function Account({ details }) {
 
   const buttons = ["deposit", "withdraw", "transfer"];
 
-  const $ = genClass({ block: "account", mods: { [action.type]: ["active"] } });
+  const $ = genClass({
+    block: "account",
+    mods: { [action.type]: ["active"] },
+    ps
+  });
 
   return (
     <motion.div {...$()} variants={variants} animate="shown" initial="hidden">
