@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  babel-plugin-transform-remove-console: ^6.9.4
   eslint: 7.29.0
   eslint-config-next: 11.0.0
   firebase-admin: ^9.9.0
@@ -23,6 +24,7 @@ dependencies:
   sass: 1.35.1
 
 devDependencies:
+  babel-plugin-transform-remove-console: 6.9.4
   eslint: 7.29.0
   eslint-config-next: 11.0.0_eslint@7.29.0+next@11.0.0
 
@@ -809,6 +811,10 @@ packages:
   /babel-plugin-syntax-jsx/6.18.0:
     resolution: {integrity: sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=}
     dev: false
+
+  /babel-plugin-transform-remove-console/6.9.4:
+    resolution: {integrity: sha1-uYA2DAZzhOJLNXpYjYB9PINSd4A=}
+    dev: true
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}

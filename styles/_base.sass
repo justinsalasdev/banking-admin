@@ -1,3 +1,4 @@
+@use 'sass:math' 
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;700;800&display=swap')
 
 *,
@@ -8,7 +9,7 @@
   box-sizing: inherit
 
 @function strip-unit($value)
-  @return $value / ($value * 0 + 1)
+  @return math.div($value ,($value * 0 + 1))
 
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size)
   $u1: unit($min-vw)
