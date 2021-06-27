@@ -15,7 +15,6 @@ export default function useUsers() {
       try {
         const res = await fetch(`/api/users/`);
         const result = await res.json();
-        console.log(result);
         usersDispatch({ type: "done", payload: result.users });
       } catch (err) {
         usersDispatch({ type: "error", payload: "error getting users" });

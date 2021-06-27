@@ -1,16 +1,20 @@
 import { signOut } from "next-auth/client";
 import { useSession } from "next-auth/client";
-import genClass from "../../helpers/genClass";
+import genClass, { toggler as $t } from "../../helpers/genClass";
 import Link from "next/link";
 
 export default function Nav() {
   const [session, loading] = useSession();
 
-  const $ = genClass({ block: "nav" });
+  const $ = genClass({
+    block: "nav",
+    mods: {
+      link: [$t(loading, "loading")],
+      home: [$t(loading, "loading")],
+      logout: [$t(loading, "loading")]
+    }
+  });
 
-  if (loading) {
-    return <NoNav />;
-  }
   return (
     <nav {...$()}>
       <Link href="/">

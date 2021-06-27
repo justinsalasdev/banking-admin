@@ -22,3 +22,9 @@ export const listVars = {
     x: 0
   }
 };
+
+export const itemVars = {
+  tap: {
+    x: 10
+  }
+};

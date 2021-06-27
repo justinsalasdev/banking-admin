@@ -3,11 +3,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Icon from "../Icon/Icon";
 import { motion } from "framer-motion";
-import { listVars, tableVars } from "./variants";
+import { itemVars, listVars, tableVars } from "./variants";
 
 export default function Users({ users, ps }) {
   const router = useRouter();
   const $ = genClass({ block: "users", ps });
+
   return (
     <motion.div variants={tableVars} initial="hidden" animate="shown" {...$()}>
       <div {...$("bar")}>
@@ -19,7 +20,9 @@ export default function Users({ users, ps }) {
       </div>
       <motion.ul variants={listVars} {...$("list")}>
         {users?.map(user => (
-          <li
+          <motion.li
+            variants={itemVars}
+            whileTap="tap"
             {...$("user")}
             key={user.uid}
             onClick={() => {
@@ -31,7 +34,7 @@ export default function Users({ users, ps }) {
             <div className="link">
               <Icon type="info" />
             </div>
-          </li>
+          </motion.li>
         ))}
       </motion.ul>
     </motion.div>

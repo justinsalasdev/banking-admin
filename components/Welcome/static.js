@@ -3,11 +3,11 @@ export const reqs = [
   "open an account",
   "add balance to an account",
   "deduct balance to an account",
-  "transfer balance between accounts"
+  "transfer balance between accounts",
+  "transaction history"
 ];
 
 export const optionals = [
-  "transaction history",
   "close an account",
   "change account data",
   "multiple accounts"

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { variants } from "./variants";
 
 export default function History({ transactions }) {
-  console.log(transactions);
   const $ = genClass({ block: "history" });
   return (
     <motion.div {...$()} variants={variants} animate="shown" initial="hidden">

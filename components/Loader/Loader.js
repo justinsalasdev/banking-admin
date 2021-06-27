@@ -2,7 +2,7 @@ import genClass from "../../helpers/genClass";
 import { motion } from "framer-motion";
 
 const variants = {
-  animation: {
+  loop: {
     // scale: [1, , 1],
     "border-radius": ["0%", "50%", "0%"],
     rotate: [0, 180, 360],
@@ -14,11 +14,7 @@ export default function Loader() {
   const $ = genClass({ block: "loader" });
   return (
     <div {...$()}>
-      <motion.div
-        variants={variants}
-        animate="animation"
-        {...$("box")}
-      ></motion.div>
+      <motion.div variants={variants} animate="loop" {...$("box")}></motion.div>
     </div>
   );
 }

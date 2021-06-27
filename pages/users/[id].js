@@ -1,4 +1,3 @@
-import Nav from "../../components/Nav/Nav";
 import getUsers from "../../helpers/getUsers";
 import Account from "../../components/Account/Account";
 import Loader from "../../components/Loader/Loader";
@@ -10,17 +9,14 @@ export default function User({ userId }) {
   const { user, isReady } = useUser(userId);
   const $ = genClass({ block: "main", mods: { main: ["user"] } });
   return (
-    <>
-      <Nav />
-      <main {...$()}>
-        {(isReady && (
-          <>
-            <Account ps={$("account").className} details={user} />
-            <History ps={$("history").className} transactions={user.history} />
-          </>
-        )) || <Loader />}
-      </main>
-    </>
+    <main {...$()}>
+      {(isReady && (
+        <>
+          <Account ps={$("account").className} details={user} />
+          <History ps={$("history").className} transactions={user.history} />
+        </>
+      )) || <Loader />}
+    </main>
   );
 }
 
