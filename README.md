@@ -14,9 +14,14 @@
 - Animations - Framer motion
 
 built and designed by Justin Salas.  
-See [live app](https://banking-admin.justinsalas.cc)
+See [live app banking-admin app](https://banking-admin.justinsalas.cc)  
+See [live app banking-client app](https://banking-app.justinsalas.cc)
 
 ##### Admin credentials
 
 - email: admin@mail.com
 - password: p@dmin
+
+##### New account password
+
+- password: initial
