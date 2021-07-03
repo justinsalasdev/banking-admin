@@ -13,7 +13,7 @@
 - Styling - Sass using BEM methodology
 - Animations - Framer motion
 
-built and designed by Justin Salas.
+built and designed by Justin Salas.  
 See [live app](https://banking-admin.justinsalas.cc)
 
 ##### Admin credentials
